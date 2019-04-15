@@ -42,17 +42,17 @@
     import Vue from "vue";
     import Component from "vue-class-component";
     import {Playlist, Track} from "@/models/Playlist";
+    import { Prop } from  'vue-property-decorator';
 
     @Component({
         /* Vue options */
     })
     export default class PlaylistDetails extends Vue {
-        playlist: Playlist = {
-            id: 123,
-            name: "Vue Hits",
-            favorite: true,
-            color: "#ff00ff"
-        };
+
+        @Prop({
+            required:true
+        })
+        playlist!: Playlist;
 
         mode = 'show';
 
