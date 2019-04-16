@@ -1,54 +1,50 @@
 <template>
-    <div>
-        <div class="mb-5">
-            <div>
-                <h3>Details</h3>
-                <dl>
-                    <dt>Name:</dt>
-                    <dd>{{ playlist.name }}</dd>
-                    <dt>Favorite:</dt>
-                    <dd>{{ playlist.favorite? 'Yes' : 'No' }}</dd>
-                    <dt>Color:</dt>
-                    <dd :style="{ color: playlist.color }">{{ playlist.color }}</dd>
-                </dl>
-                <input class="btn btn-info" type="button" value="Edit" @click="edit">
+    <card>
+<!--        <template v-slot:[ getSlotName() ]=""></template>-->
+        <template #title>
+            <h3>Details</h3>
+        </template>
+        <div>
+            <div class="mb-5">
+                <div>
+                    <dl>
+                        <dt>Name:</dt>
+                        <dd>{{ playlist.name }}</dd>
+                        <dt>Favorite:</dt>
+                        <dd>{{ playlist.favorite | yesno }}</dd>
+                        <dt>Color:</dt>
+                        <dd :style="{ color: playlist.color }">{{ playlist.color }}</dd>
+                    </dl>
+                </div>
             </div>
         </div>
-            <playlist-form v-if="mode === 'edit'" :playlist="playlist"></playlist-form>
-
-    </div>
+        <template #footer>
+            <input class="btn btn-info" type="button" value="Edit" @click="$emit('edit')">
+        </template>
+    </card>
 </template>
 
 <script lang="ts">
     import Vue from "vue";
     import Component from "vue-class-component";
     import {Playlist, Track} from "@/models/Playlist";
-    import { Prop } from  'vue-property-decorator';
-    import PlaylistForm from '@/views/playlists/componenets/PlaylistForm.vue';
+    import {Prop} from "vue-property-decorator";
+    import PlaylistForm from "@/views/playlists/componenets/PlaylistForm.vue";
 
     @Component({
-        components: {PlaylistForm}
+        components: {PlaylistForm},
+        filters: {
+            yesno(value: boolean) {
+                return value ? "Yes" : "No";
+            }
+        }
     })
     export default class PlaylistDetails extends Vue {
 
         @Prop({
-            required:true
+            required: true
         })
         playlist!: Playlist;
-
-        mode = 'show';
-
-        edit(){
-            this.mode = 'edit';
-        };
-
-        // save(){
-        //     this.mode = 'show';
-        // };
-        //
-        // cancel(){
-        //     this.mode = 'show';
-        // };
     }
 </script>
 

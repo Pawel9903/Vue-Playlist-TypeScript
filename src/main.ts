@@ -4,10 +4,13 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css';
+import SearchField from '@/components/SearchField.vue';
+import Card from '@/components/Card.vue';
 
 Vue.config.productionTip = false;
-
+Vue.component('SearchField', SearchField);
+Vue.component('Card', Card);
 new Vue({
   router,
   store,
