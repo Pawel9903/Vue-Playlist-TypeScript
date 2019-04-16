@@ -1,20 +1,20 @@
 <template>
     <div class="card">
-        <img src="http://placekitten.com/300/300" class="card-img-top" alt="#"/>
+        <img :src="album.image" class="card-img-top" alt="#"/>
         <div class="card-body">
-            <h5 class="card-title">Album</h5>
+            <h5 class="card-title">{{album.name}}</h5>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-    import { Component, Vue } from "vue-property-decorator";
+    import { Component, Vue, Prop } from "vue-property-decorator";
+    import {SearchResult} from "@/models/SearchResult";
 
     @Component({
     })
     export default class AlbumCard extends Vue {
-        query = 'batman';
-        results = [];
+        @Prop() album!:SearchResult;
     }
 </script>
 
