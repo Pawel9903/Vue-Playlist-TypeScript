@@ -3,7 +3,8 @@
     <div class="row">
       <div class="col">
         <h1>Music app</h1>
-        <Playlists></Playlists>
+<!--        <playlists></playlists>-->
+        <music-search></music-search>
       </div>
     </div>
   </div>
@@ -13,9 +14,11 @@
   import Vue from 'vue';
   import Component from 'vue-class-component';
   import Playlists from "@/views/playlists/Playlists.vue";
+  import MusicSearch from '@/views/search/MusicSearch.vue';
 
   @Component({
     components: {
+      MusicSearch,
       Playlists: Playlists
     }
     /* Vue options */
